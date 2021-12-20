@@ -1,0 +1,11 @@
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\bin\Debug\Function Plotter.exe.config
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\bin\Debug\Function Plotter.exe
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\bin\Debug\Function Plotter.pdb
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function Plotter.csproj.AssemblyReference.cache
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function Plotter.csproj.SuggestedBindingRedirects.cache
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function_Plotter.Properties.Resources.resources
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function Plotter.csproj.GenerateResource.cache
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function Plotter.csproj.CoreCompileInputs.cache
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function Plotter.exe
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function Plotter.pdb
+E:\study affairs\internships\Master Micro\Function Plotter\Function Plotter\obj\Debug\Function_Plotter.Form1.resources

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "938317c0-ffa8-48a6-8adf-3e66a5ce1f33": {
+      "ProjectGuid": "938317c0-ffa8-48a6-8adf-3e66a5ce1f33",
+      "DisplayName": "Function Plotter",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
