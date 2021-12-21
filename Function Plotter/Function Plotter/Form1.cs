@@ -21,7 +21,16 @@ namespace Function_Plotter
 
         private void plot_Click(object sender, EventArgs e)
         {
-            List<Point> points = controller.plot(int.Parse(minValue.Value.ToString()), int.Parse(maxValue.Value.ToString()), equation.Text);
+            int mnValue = Convert.ToInt32(minValue.Value);
+            int mxValue = Convert.ToInt32(maxValue.Value);
+            string exp = equation.Text;
+            List<Point> points = controller.plot(mnValue, mxValue, exp);
+            chart2.Series.Clear();
+            foreach(Point point in points)
+            {
+                chart2.Series["Series1"].Points.AddXY(point.XCoordinate, point.YCoordinate);
+            }
+            chart2.Show();
         }
     }
 }

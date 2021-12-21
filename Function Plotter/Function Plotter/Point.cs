@@ -8,7 +8,7 @@ namespace Function_Plotter
 {
     internal class Point
     {
-        private double xCoordinate { get; set; }
-        private double yCoordinate { get; set; }
+        public double XCoordinate { get; set; }
+        public double YCoordinate { get; set; }
     }
 }

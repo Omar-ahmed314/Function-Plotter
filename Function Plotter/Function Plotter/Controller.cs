@@ -24,12 +24,16 @@ namespace Function_Plotter
         {
             Point point = new Point();
             Queue<string> expression = expressionParse(equation);
+            List<Point> points = new List<Point>();
             if (expression == null)
                 return null;
             for (int i = minValue; i <= maxValue; i++)
             {
-              
+                point.XCoordinate = i;
+                point.YCoordinate = calculateExpression(expression, i);
+                points.Add(point);
             }
+            return points;
             
         }
         private Queue<string> expressionParse(string equation)
