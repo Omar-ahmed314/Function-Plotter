@@ -84,6 +84,10 @@ namespace Function_Plotter
                         {
                             output.Enqueue(operators.Pop());
                         }
+                        else
+                        {
+                            break;
+                        }
                     }
                     operators.Push(s);
                 }
@@ -97,14 +101,14 @@ namespace Function_Plotter
         private string spaceAroundOperators(string equation)
         {
             string modifiedEquation = "";
-            Regex r = new Regex(@"[+*/^-]");
+            Regex r = new Regex(@"[+*/^()-]");
             for(var i = 0; i < equation.Length; i++)
             {
                 if (r.IsMatch(equation[i].ToString()))
                 {
                     modifiedEquation += " " + equation[i] + " ";
                 }
-                else if(int.TryParse(equation[i].ToString(), out _) | equation[i].Equals('x'))
+                else if (!equation[i].Equals(' '))
                 {
                     modifiedEquation += equation[i];
                 }
