@@ -95,15 +95,20 @@ namespace Function_Plotter
         }
         private string spaceAroundOperators(string equation)
         {
+            string modifiedEquation = "";
+            Regex r = new Regex(@"[+*/^-]");
             for(var i = 0; i < equation.Length; i++)
             {
-                if (equation[i].Equals("+") | equation[i].Equals("-") | equation[i].Equals("*") | equation[i].Equals("^") | equation[i].Equals("(") | equation[i].Equals(")") | equation[i].Equals("/"))
+                if (r.IsMatch(equation[i].ToString()))
                 {
-                    equation.Insert(i, " ");
-                    equation.Insert(i + 2, " ");
+                    modifiedEquation += " " + equation[i] + " ";
+                }
+                else if(int.TryParse(equation[i].ToString(), out _) | equation[i].Equals('x'))
+                {
+                    modifiedEquation += equation[i];
                 }
             }
-            return equation.Trim();
+            return modifiedEquation;
         }
         private int getPrecedence(string op)
         {
