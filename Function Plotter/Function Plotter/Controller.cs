@@ -22,10 +22,14 @@ namespace Function_Plotter
         }
         public List<Point> plot(int minValue, int maxValue, string equation)
         {
+            Point point = new Point();
             Queue<string> expression = expressionParse(equation);
             if (expression == null)
                 return null;
-            
+            for (int i = minValue; i <= maxValue; i++)
+            {
+              
+            }
             
         }
         private Queue<string> expressionParse(string equation)
@@ -36,7 +40,7 @@ namespace Function_Plotter
             Queue<string> output = new Queue<string>();
             foreach (string s in array)
             {
-                if (char.IsDigit(char.Parse(s)))
+                if (char.IsDigit(char.Parse(s)) | s.Equals("x"))
                 {
                     output.Enqueue(s);
                 }
@@ -113,6 +117,71 @@ namespace Function_Plotter
                     return 1;
             }
             return 0;
+        }
+        private double calculateExpression(Queue<string> expression, int x)
+        {
+            Stack<double> result = new Stack<double>();
+            double num1, num2;
+            string top;
+            while(expression.Count > 0)
+            {
+                top = expression.Dequeue();
+                if(int.TryParse(top, out _))
+                {
+                    result.Push(Convert.ToDouble(top));
+                }
+                else if (top.Equals("x"))
+                {
+                    result.Push(Convert.ToDouble(x));
+                }
+                else
+                {
+                    switch (top)
+                    {
+                        case "+":
+                            num1 = result.Pop();
+                            num2 = result.Pop();
+                            result.Push(num1 + num2);
+                            break;
+                        case "-":
+                            num1 = result.Pop();
+                            num2 = result.Pop();
+                            result.Push(num2 - num1);
+                            break;
+                        case "*":
+                            num1 = result.Pop();
+                            num2 = result.Pop();
+                            result.Push(num1 * num2);
+                            break;
+                        case "/":
+                            num1 = result.Pop();
+                            num2 = result.Pop();
+                            result.Push(num2 / num1);
+                            break;
+                        case "^":
+                            num1 = result.Pop();
+                            num2 = result.Pop();
+                            result.Push(Math.Pow(num2, num1));
+                            break;
+                        case "sin":
+                            num1 = result.Pop();
+                            result.Push(Math.Sin(num1));
+                            break;
+                        case "cos":
+                            num1 = result.Pop();
+                            result.Push(Math.Cos(num1));
+                            break;
+                        case "tan":
+                            num1 = result.Pop();
+                            result.Push(Math.Tan(num1));
+                            break;
+
+                    }
+                }
+
+
+            }
+            return result.Pop();
         }
     }
 }
