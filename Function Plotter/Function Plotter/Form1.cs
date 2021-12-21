@@ -25,10 +25,9 @@ namespace Function_Plotter
             int mxValue = Convert.ToInt32(maxValue.Value);
             string exp = equation.Text;
             List<Point> points = controller.plot(mnValue, mxValue, exp);
-            chart2.Series.Clear();
             foreach(Point point in points)
             {
-                chart2.Series["Series1"].Points.AddXY(point.XCoordinate, point.YCoordinate);
+                chart2.Series[0].Points.AddXY(point.XCoordinate, point.YCoordinate);
             }
             chart2.Show();
         }

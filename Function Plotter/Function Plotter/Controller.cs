@@ -22,13 +22,14 @@ namespace Function_Plotter
         }
         public List<Point> plot(int minValue, int maxValue, string equation)
         {
-            Point point = new Point();
+            Point point;
             Queue<string> expression = expressionParse(equation);
             List<Point> points = new List<Point>();
             if (expression == null)
                 return null;
             for (int i = minValue; i <= maxValue; i++)
             {
+                point = new Point();
                 point.XCoordinate = i;
                 point.YCoordinate = calculateExpression(expression, i);
                 points.Add(point);
@@ -127,9 +128,10 @@ namespace Function_Plotter
             }
             return 0;
         }
-        private double calculateExpression(Queue<string> expression, int x)
+        private double calculateExpression(Queue<string> exp, int x)
         {
             Stack<double> result = new Stack<double>();
+            Queue<string> expression = new Queue<string>(exp);
             double num1, num2;
             string top;
             while(expression.Count > 0)
