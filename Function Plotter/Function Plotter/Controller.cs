@@ -22,7 +22,7 @@ namespace Function_Plotter
         }
         public List<Point> plot(int minValue, int maxValue, string equation)
         {
-            if (!isValidParanthasis(equation))
+            if (!(isValidParanthasis(equation) && isValidExpression(equation)))
                 return null;
             Point point;
             Queue<string> expression = expressionParse(equation);
@@ -224,6 +224,12 @@ namespace Function_Plotter
             if (paranthasis.Any())
                 return false;
             return true;
+        }
+
+        private bool isValidExpression(string expression)
+        {
+            Regex r = new Regex(@"[sincotax()^+/*-]");
+            return r.IsMatch(expression);
         }
     }
 }
