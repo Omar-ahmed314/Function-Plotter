@@ -22,9 +22,9 @@ namespace Function_Plotter
         }
         public List<Point> plot(int minValue, int maxValue, string equation)
         {
-            Point point;
             if (!isValidParanthasis(equation))
                 return null;
+            Point point;
             Queue<string> expression = expressionParse(equation);
             List<Point> points = new List<Point>();
             if (expression == null)
@@ -213,15 +213,15 @@ namespace Function_Plotter
             {
                 if (s.Equals('('))
                     paranthasis.Push(1);
-                if (s.Equals(')'))
+                else if (s.Equals(')'))
                 {
-                    if (paranthasis.Count > 1)
+                    if (paranthasis.Any())
                         paranthasis.Pop();
                     else
                         return false;
                 }
             }
-            if (paranthasis.Count > 1)
+            if (paranthasis.Any())
                 return false;
             return true;
         }

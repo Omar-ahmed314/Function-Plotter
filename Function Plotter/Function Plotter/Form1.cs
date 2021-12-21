@@ -64,5 +64,10 @@ namespace Function_Plotter
             invalidExpression.Visible = false;
             invalidRange.Visible = false;
         }
+
+        private void chart2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
