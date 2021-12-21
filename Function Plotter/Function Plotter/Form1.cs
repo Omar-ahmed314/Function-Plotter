@@ -39,6 +39,13 @@ namespace Function_Plotter
             invalidExpression.Visible = false;
 
             List<Point> points = controller.plot(mnValue, mxValue, exp);
+            if(points == null)
+            {
+                invalidExpression.Visible = true;
+                return;
+            }
+            invalidExpression.Visible = false;
+
             chart2.Series[0].Points.Clear();
             foreach(Point point in points)
             {

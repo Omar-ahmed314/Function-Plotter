@@ -23,6 +23,8 @@ namespace Function_Plotter
         public List<Point> plot(int minValue, int maxValue, string equation)
         {
             Point point;
+            if (!isValidParanthasis(equation))
+                return null;
             Queue<string> expression = expressionParse(equation);
             List<Point> points = new List<Point>();
             if (expression == null)
@@ -74,6 +76,10 @@ namespace Function_Plotter
                     {
                         return null;
                     }
+                    if(operators.Any() && operators.Peek().Length > 1 && !int.TryParse(operators.Peek(), out _))
+                    {
+                        output.Enqueue(operators.Pop());
+                    }
                 }
                 else
                 {
@@ -100,20 +106,22 @@ namespace Function_Plotter
         }
         private string spaceAroundOperators(string equation)
         {
-            string modifiedEquation = "";
+            string modifiedEquation = " ";
             Regex r = new Regex(@"[+*/^()-]");
             for(var i = 0; i < equation.Length; i++)
             {
                 if (r.IsMatch(equation[i].ToString()))
                 {
-                    modifiedEquation += " " + equation[i] + " ";
+                    if (!modifiedEquation[modifiedEquation.Length - 1].Equals(' '))
+                        modifiedEquation += " ";
+                    modifiedEquation += equation[i] + " ";
                 }
                 else if (!equation[i].Equals(' '))
                 {
                     modifiedEquation += equation[i];
                 }
             }
-            return modifiedEquation;
+            return modifiedEquation.Trim();
         }
         private int getPrecedence(string op)
         {
@@ -198,5 +206,25 @@ namespace Function_Plotter
             }
             return result.Pop();
         }
+        private bool isValidParanthasis(string expression)
+        {
+            Stack<int> paranthasis = new Stack<int>();
+            foreach(char s in expression)
+            {
+                if (s.Equals('('))
+                    paranthasis.Push(1);
+                if (s.Equals(')'))
+                {
+                    if (paranthasis.Count > 1)
+                        paranthasis.Pop();
+                    else
+                        return false;
+                }
+            }
+            if (paranthasis.Count > 1)
+                return false;
+            return true;
+        }
     }
 }
+
