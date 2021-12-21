@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.equation = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +39,8 @@
             this.plot = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.invalidExpression = new System.Windows.Forms.Label();
+            this.invalidRange = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxValue)).BeginInit();
@@ -47,19 +49,19 @@
             // chart2
             // 
             this.chart2.BackImageTransparentColor = System.Drawing.Color.Transparent;
-            chartArea3.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart2.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(12, 12);
             this.chart2.Name = "chart2";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Black;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series3.YValuesPerPoint = 2;
-            this.chart2.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Black;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            series1.YValuesPerPoint = 2;
+            this.chart2.Series.Add(series1);
             this.chart2.Size = new System.Drawing.Size(549, 224);
             this.chart2.TabIndex = 0;
             this.chart2.Text = "chart2";
@@ -89,16 +91,16 @@
             // 
             // maxValue
             // 
-            this.maxValue.Location = new System.Drawing.Point(441, 318);
+            this.maxValue.Location = new System.Drawing.Point(87, 353);
             this.maxValue.Name = "maxValue";
             this.maxValue.Size = new System.Drawing.Size(120, 20);
             this.maxValue.TabIndex = 4;
             // 
             // plot
             // 
-            this.plot.Location = new System.Drawing.Point(441, 387);
+            this.plot.Location = new System.Drawing.Point(416, 318);
             this.plot.Name = "plot";
-            this.plot.Size = new System.Drawing.Size(120, 23);
+            this.plot.Size = new System.Drawing.Size(145, 82);
             this.plot.TabIndex = 5;
             this.plot.Text = "Plot";
             this.plot.UseVisualStyleBackColor = true;
@@ -116,15 +118,38 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(364, 325);
+            this.label4.Location = new System.Drawing.Point(12, 360);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Max value";
             // 
+            // invalidExpression
+            // 
+            this.invalidExpression.AutoSize = true;
+            this.invalidExpression.ForeColor = System.Drawing.Color.Red;
+            this.invalidExpression.Location = new System.Drawing.Point(84, 283);
+            this.invalidExpression.Name = "invalidExpression";
+            this.invalidExpression.Size = new System.Drawing.Size(91, 13);
+            this.invalidExpression.TabIndex = 8;
+            this.invalidExpression.Text = "Invalid expression";
+            // 
+            // invalidRange
+            // 
+            this.invalidRange.AutoSize = true;
+            this.invalidRange.ForeColor = System.Drawing.Color.Red;
+            this.invalidRange.Location = new System.Drawing.Point(84, 387);
+            this.invalidRange.Name = "invalidRange";
+            this.invalidRange.Size = new System.Drawing.Size(68, 13);
+            this.invalidRange.TabIndex = 9;
+            this.invalidRange.Text = "Invalid range";
+            this.invalidRange.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(577, 435);
+            this.Controls.Add(this.invalidRange);
+            this.Controls.Add(this.invalidExpression);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.plot);
@@ -155,6 +180,8 @@
         private System.Windows.Forms.Button plot;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label invalidExpression;
+        private System.Windows.Forms.Label invalidRange;
     }
 }
 

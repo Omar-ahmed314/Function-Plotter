@@ -45,7 +45,7 @@ namespace Function_Plotter
             Queue<string> output = new Queue<string>();
             foreach (string s in array)
             {
-                if (char.IsDigit(char.Parse(s)) | s.Equals("x"))
+                if (int.TryParse(s, out _) | s.Equals("x"))
                 {
                     output.Enqueue(s);
                 }
