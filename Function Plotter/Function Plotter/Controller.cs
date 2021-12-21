@@ -97,7 +97,7 @@ namespace Function_Plotter
         {
             for(var i = 0; i < equation.Length; i++)
             {
-                if(equation[i].Equals("+") | equation[i].Equals("-") | equation[i].Equals("*") | equation[i].Equals("^") | equation[i].Equals("(") | equation[i].Equals(")"))
+                if (equation[i].Equals("+") | equation[i].Equals("-") | equation[i].Equals("*") | equation[i].Equals("^") | equation[i].Equals("(") | equation[i].Equals(")") | equation[i].Equals("/"))
                 {
                     equation.Insert(i, " ");
                     equation.Insert(i + 2, " ");
