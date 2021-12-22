@@ -228,8 +228,32 @@ namespace Function_Plotter
 
         private bool isValidExpression(string expression)
         {
-            Regex r = new Regex(@"[sincotax()^+/*-]");
-            return r.IsMatch(expression);
+            Regex r = new Regex(@"(\d+|x|(sin|cos|tan)\((?<digit>.+)\))(\s*[*+/^-]\s*(\d+|x|(sin|cos|tan)\((?<digit>.+)\)))*");
+            return recurseTheExpression(expression, r);
+           
+        }
+        private bool recurseTheExpression(string expression, Regex r)
+        {
+            if(r.Match(expression).Length == expression.Length)
+            {
+                if(r.Match(expression).Groups["digit"].Length < 1)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            foreach(Capture capture in r.Match(expression).Groups["digit"].Captures)
+            {
+                if(!recurseTheExpression(capture.Value, r))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
