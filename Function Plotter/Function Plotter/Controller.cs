@@ -11,10 +11,10 @@ namespace Function_Plotter
     {
         private static Controller controller = null;
 
-        private Controller(){}
+        private Controller() { }
         public static Controller instantiate()
         {
-            if(controller == null)
+            if (controller == null)
             {
                 controller = new Controller();
             }
@@ -33,16 +33,24 @@ namespace Function_Plotter
             {
                 point = new Point();
                 point.XCoordinate = i;
-                point.YCoordinate = calculateExpression(expression, i);
+                try
+                {
+                    point.YCoordinate = calculateExpression(expression, i);
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
                 points.Add(point);
             }
             return points;
-            
+
         }
         private Queue<string> expressionParse(string equation)
         {
+            equation = equation.ToLower();
             equation = spaceAroundOperators(equation);
-            string [] array = equation.Split(' ');
+            string[] array = equation.Split(' ');
             Stack<string> operators = new Stack<string>();
             Queue<string> output = new Queue<string>();
             foreach (string s in array)
@@ -51,7 +59,7 @@ namespace Function_Plotter
                 {
                     output.Enqueue(s);
                 }
-                else if(s.Length > 1)
+                else if (s.Length > 1)
                 {
                     operators.Push(s);
                 }
@@ -76,7 +84,7 @@ namespace Function_Plotter
                     {
                         return null;
                     }
-                    if(operators.Any() && operators.Peek().Length > 1 && !int.TryParse(operators.Peek(), out _))
+                    if (operators.Any() && operators.Peek().Length > 1 && !int.TryParse(operators.Peek(), out _))
                     {
                         output.Enqueue(operators.Pop());
                     }
@@ -84,9 +92,9 @@ namespace Function_Plotter
                 else
                 {
                     Regex r = new Regex(@"[+^*/-]");
-                    while(operators.Any() && r.IsMatch(operators.Peek()))
+                    while (operators.Any() && r.IsMatch(operators.Peek()))
                     {
-                        if(getPrecedence(s) <= getPrecedence(operators.Peek()))
+                        if (getPrecedence(s) <= getPrecedence(operators.Peek()))
                         {
                             output.Enqueue(operators.Pop());
                         }
@@ -108,7 +116,7 @@ namespace Function_Plotter
         {
             string modifiedEquation = " ";
             Regex r = new Regex(@"[+*/^()-]");
-            for(var i = 0; i < equation.Length; i++)
+            for (var i = 0; i < equation.Length; i++)
             {
                 if (r.IsMatch(equation[i].ToString()))
                 {
@@ -146,10 +154,10 @@ namespace Function_Plotter
             Queue<string> expression = new Queue<string>(exp);
             double num1, num2;
             string top;
-            while(expression.Count > 0)
+            while (expression.Count > 0)
             {
                 top = expression.Dequeue();
-                if(int.TryParse(top, out _))
+                if (int.TryParse(top, out _))
                 {
                     result.Push(Convert.ToDouble(top));
                 }
@@ -209,7 +217,7 @@ namespace Function_Plotter
         private bool isValidParanthasis(string expression)
         {
             Stack<int> paranthasis = new Stack<int>();
-            foreach(char s in expression)
+            foreach (char s in expression)
             {
                 if (s.Equals('('))
                     paranthasis.Push(1);
@@ -228,32 +236,9 @@ namespace Function_Plotter
 
         private bool isValidExpression(string expression)
         {
-            Regex r = new Regex(@"(\d+|x|(sin|cos|tan)\((?<digit>.+)\))(\s*[*+/^-]\s*(\d+|x|(sin|cos|tan)\((?<digit>.+)\)))*");
-            return recurseTheExpression(expression, r);
-           
-        }
-        private bool recurseTheExpression(string expression, Regex r)
-        {
-            if(r.Match(expression).Length == expression.Length)
-            {
-                if(r.Match(expression).Groups["digit"].Length < 1)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            Regex r = new Regex(@"(\(\))+");
+            return !r.IsMatch(expression);
 
-            foreach(Capture capture in r.Match(expression).Groups["digit"].Captures)
-            {
-                if(!recurseTheExpression(capture.Value, r))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 }
