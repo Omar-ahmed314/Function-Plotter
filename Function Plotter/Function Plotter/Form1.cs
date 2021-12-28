@@ -65,9 +65,22 @@ namespace Function_Plotter
             invalidRange.Visible = false;
         }
 
-        private void chart2_Click(object sender, EventArgs e)
+        private void equation_Enter(object sender, EventArgs e)
         {
+            if(equation.Text == "equation" && equation.ForeColor == Color.Silver)
+            {
+                equation.Text = "";
+                equation.ForeColor = Color.Black;
+            }
+        }
 
+        private void equation_Leave(object sender, EventArgs e)
+        {
+            if (equation.Text == "")
+            {
+                equation.Text = "equation";
+                equation.ForeColor = Color.Silver;
+            }
         }
     }
 }
