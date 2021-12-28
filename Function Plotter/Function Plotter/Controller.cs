@@ -236,9 +236,8 @@ namespace Function_Plotter
 
         private bool isValidExpression(string expression)
         {
-            Regex r = new Regex(@"(\(\))+");
+            Regex r = new Regex(@"((\(\))|(\)\()|\d\(|\)\d)");
             return !r.IsMatch(expression);
-
         }
     }
 }
