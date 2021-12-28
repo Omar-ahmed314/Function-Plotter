@@ -55,7 +55,7 @@ namespace Function_Plotter
             Queue<string> output = new Queue<string>();
             foreach (string s in array)
             {
-                if (int.TryParse(s, out _) | s.Equals("x"))
+                if (int.TryParse(s, out _) | s.Equals("x") | s.Equals("e") | s.Equals("pi"))
                 {
                     output.Enqueue(s);
                 }
@@ -161,14 +161,19 @@ namespace Function_Plotter
                 {
                     result.Push(Convert.ToDouble(top));
                 }
-                else if (top.Equals("x"))
-                {
-                    result.Push(Convert.ToDouble(x));
-                }
                 else
                 {
                     switch (top)
                     {
+                        case "x":
+                            result.Push(Convert.ToDouble(x));
+                            break;
+                        case "e":
+                            result.Push(Math.E);
+                            break;
+                        case "pi":
+                            result.Push(Math.PI);
+                            break;
                         case "+":
                             num1 = result.Pop();
                             num2 = result.Pop();
@@ -206,6 +211,12 @@ namespace Function_Plotter
                             num1 = result.Pop();
                             result.Push(Math.Tan(num1));
                             break;
+                        case "log":
+                            num1 = result.Pop();
+                            result.Push(Math.Log10(num1));
+                            break;
+                        default:
+                            throw new Exception();
 
                     }
                 }
